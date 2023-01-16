@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:ghost_talks/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:ghost_talks/welcome/screen4.dart';

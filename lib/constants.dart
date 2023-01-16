@@ -1,17 +1,16 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class WelcomeDefault extends StatelessWidget {
   const WelcomeDefault(
       {Key? key,
-      this.colorCode,
+      required this.colorCode,
       required this.welcomeText,
       required this.textSpan,
       this.elevatedbutton,
       this.decorationCode})
       : super(key: key);
 
-  final int? colorCode;
+  final int colorCode;
   final int? decorationCode;
   final String welcomeText;
   final TextSpan textSpan;
@@ -22,11 +21,7 @@ class WelcomeDefault extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('images/bgcolor$colorCode.png'),
-                fit: BoxFit.fill),
-          ),
+          decoration: decorationProperty(colorCode),
           child: Center(
             child: Padding(
               padding: const EdgeInsets.all(30.0),
@@ -87,4 +82,11 @@ class WelcomeDefault extends StatelessWidget {
       ),
     );
   }
+}
+
+BoxDecoration decorationProperty(int decNumber) {
+  return BoxDecoration(
+    image: DecorationImage(
+        image: AssetImage('images/bgcolor$decNumber.png'), fit: BoxFit.fill),
+  );
 }

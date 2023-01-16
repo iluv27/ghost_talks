@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ghost_talks/signup/signin.dart';
-import 'package:ghost_talks/welcome/screen1.dart';
-import 'dart:async';
+import 'package:ghost_talks/signup/sign_up.dart';
 
 class WelcomeScreen4 extends StatefulWidget {
   const WelcomeScreen4({super.key});
