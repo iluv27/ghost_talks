@@ -29,6 +29,7 @@ class WelcomeScreen3 extends StatelessWidget {
           return const WelcomeScreen4();
         })));
       },
+      buttonText: 'Next',
     );
   }
 }

@@ -33,6 +33,7 @@ class WelcomeScreen2 extends StatelessWidget {
           return const WelcomeScreen3();
         })));
       },
+      buttonText: 'Next',
     );
   }
 }

@@ -7,7 +7,8 @@ class WelcomeDefault extends StatelessWidget {
       required this.welcomeText,
       required this.textSpan,
       this.elevatedbutton,
-      this.decorationCode})
+      this.decorationCode,
+      this.buttonText})
       : super(key: key);
 
   final int colorCode;
@@ -15,6 +16,7 @@ class WelcomeDefault extends StatelessWidget {
   final String welcomeText;
   final TextSpan textSpan;
   final Function()? elevatedbutton;
+  final String? buttonText;
 
   @override
   Widget build(BuildContext context) {
@@ -51,18 +53,9 @@ class WelcomeDefault extends StatelessWidget {
                         const SizedBox(
                           height: 40,
                         ),
-                        ElevatedButton(
-                          onPressed: (elevatedbutton),
-                          style: const ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(
-                                Color(0XFF46ECE2),
-                              ),
-                              fixedSize: MaterialStatePropertyAll(
-                                  Size.fromHeight(50))),
-                          child: const Text(
-                            'Next',
-                            style: TextStyle(color: Colors.black87),
-                          ),
+                        ButtomButton(
+                          elevatedbutton: elevatedbutton,
+                          buttonText: buttonText,
                         ),
                         const SizedBox(
                           height: 30,
@@ -79,6 +72,36 @@ class WelcomeDefault extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class ButtomButton extends StatelessWidget {
+  const ButtomButton({Key? key, required this.elevatedbutton, this.buttonText})
+      : super(key: key);
+
+  final Function()? elevatedbutton;
+  final String? buttonText;
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: (elevatedbutton),
+      style: ButtonStyle(
+          elevation: const MaterialStatePropertyAll(0),
+          backgroundColor: const MaterialStatePropertyAll(
+            Color(0XFF46ECE2),
+          ),
+          fixedSize: const MaterialStatePropertyAll(Size.fromHeight(57)),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ))),
+      child: Text(
+        buttonText.toString(),
+        style: const TextStyle(
+            color: Color.fromARGB(179, 15, 24, 24), fontSize: 16),
       ),
     );
   }
