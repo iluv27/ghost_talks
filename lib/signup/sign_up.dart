@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:ghost_talks/constants.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:ghost_talks/chat/call_screen.dart';
 
 GoogleSignIn _googleSignIn = GoogleSignIn(
   // Optional clientId
@@ -14,8 +15,6 @@ GoogleSignIn _googleSignIn = GoogleSignIn(
     'https://www.googleapis.com/auth/contacts.readonly',
   ],
 );
-
-
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -100,9 +99,6 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Future<void> _handleSignOut() => _googleSignIn.disconnect();
   final _formKey = GlobalKey<FormState>();
-
-  bool? _isChecked = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -161,23 +157,12 @@ class _SignUpPageState extends State<SignUpPage> {
                               innerText: 'Enter Password',
                               validatorText: 'Please enter your password',
                             ),
-                            CheckboxListTile(
-                              side: const BorderSide(color: Colors.black),
-                              contentPadding:
-                                  const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                              selected: true,
-                              value: _isChecked,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  _isChecked = value;
-                                });
-                              },
-                              title: const Text(
+                            const CheckBoxListTile(
+                              text: Text(
                                 "I accept the terms and conditions  of GhostTalks",
                                 style: TextStyle(
                                     fontSize: 12, color: Colors.black54),
                               ),
-                              controlAffinity: ListTileControlAffinity.leading,
                             ),
                             const SizedBox(
                               height: 40,
@@ -194,6 +179,8 @@ class _SignUpPageState extends State<SignUpPage> {
                             const SizedBox(
                               height: 30,
                             ),
+
+                            //Divider For OR
                             Row(
                               children: const [
                                 Expanded(
@@ -233,15 +220,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     color: Colors.black45,
                                   ),
                                 ),
-                                IconButton(
-                                  padding: EdgeInsets.zero,
-                                  onPressed: () {},
-                                  icon: const Icon(
-                                    Icons.ac_unit,
-                                    size: 64,
-                                    color: Colors.black45,
-                                  ),
-                                ),
+                                _googleSignInIcon(),
                                 IconButton(
                                   padding: EdgeInsets.zero,
                                   onPressed: () {},
@@ -319,7 +298,35 @@ class InputField extends StatelessWidget {
   }
 }
 
-Widget _buildBody() {
+class CheckBoxListTile extends StatefulWidget {
+  const CheckBoxListTile({super.key, required this.text});
+  final Widget? text;
+  @override
+  State<CheckBoxListTile> createState() => _CheckBoxListTileState();
+}
+
+class _CheckBoxListTileState extends State<CheckBoxListTile> {
+  bool? _isChecked = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return CheckboxListTile(
+      side: const BorderSide(color: Colors.black),
+      contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+      selected: true,
+      value: _isChecked,
+      onChanged: (bool? value) {
+        setState(() {
+          _isChecked = value;
+        });
+      },
+      title: widget.text,
+      controlAffinity: ListTileControlAffinity.leading,
+    );
+  }
+}
+
+Widget _googleSignInIcon() {
   GoogleSignInAccount? _currentUser;
   final GoogleSignInAccount? user = _currentUser;
   Function()? _handleSignIn;
@@ -352,15 +359,10 @@ Widget _buildBody() {
       ],
     );
   } else {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: <Widget>[
-        const Text('You are not currently signed in.'),
-        ElevatedButton(
-          onPressed: _handleSignIn,
-          child: const Text('SIGN IN'),
-        ),
-      ],
+    return IconButton(
+      iconSize: 70,
+      onPressed: _handleSignIn,
+      icon: Image.asset('images/google.png'),
     );
   }
 }
