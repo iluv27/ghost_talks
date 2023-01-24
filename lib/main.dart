@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ghost_talks/welcome/screen0.dart';
-import 'chat/chat_screen.dart';
 
 void main() {
   runApp(
