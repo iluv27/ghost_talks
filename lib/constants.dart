@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 
 //Welcome page for screen 1-3
@@ -135,17 +137,25 @@ class IconButtonType {
 
 //Input field of the sign up and log in pages
 class InputField extends StatelessWidget {
-  const InputField(
-      {Key? key, required this.innerText, required this.validatorText})
+  InputField(
+      {Key? key,
+      required this.innerText,
+      required this.validatorText,
+      this.onInputChanged,
+      this.textEditingController})
       : super(key: key);
 
   final String innerText;
   final String validatorText;
+  final Function(String)? onInputChanged;
+  TextEditingController? textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: TextFormField(
+        controller: textEditingController,
+        onChanged: onInputChanged,
         cursorWidth: 1.5,
         cursorHeight: 20,
         cursorColor: const Color.fromARGB(255, 36, 128, 121),
