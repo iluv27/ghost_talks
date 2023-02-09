@@ -227,3 +227,7 @@ class _CheckBoxListTileState extends State<CheckBoxListTile> {
     );
   }
 }
+
+TextStyle kTextStyle() {
+  return const TextStyle(fontSize: 20, color: Colors.white);
+}
