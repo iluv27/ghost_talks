@@ -60,17 +60,17 @@ void getCurrentUser() {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: ChatScreen(), 
+      body: _pages.elementAt(_selectedIndex), 
       bottomNavigationBar: Container(
           decoration: const BoxDecoration(
             color: Colors.black,
             borderRadius: BorderRadius.only(
-                topRight: Radius.circular(30), topLeft: Radius.circular(30)),
+                topRight: Radius.circular(30), topLeft: Radius.circular(60)),
           ),
           child: Material(
             elevation: 0.0,
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30.0)),
+                borderRadius: BorderRadius.circular(60.0)),
             child: BottomNavigationBar(
               elevation: 0,
               backgroundColor: Colors.transparent,
@@ -88,6 +88,12 @@ void getCurrentUser() {
                   label: 'Profile',
                 ),
               ],
+            currentIndex: _selectedIndex,
+          selectedItemColor: Colors.amber[800],
+          onTap: _onItemTapped,
+        //   shape: RoundedRectangleBorder(
+        //   borderRadius: BorderRadius.circular(20),
+        // ),
             ),
           ),),
     );
