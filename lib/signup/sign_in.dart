@@ -6,6 +6,7 @@ import 'package:ghost_talks/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ghost_talks/chat/chat_screen.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:ghost_talks/chat/main_menu_screen';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -117,7 +118,7 @@ class _SignInPageState extends State<SignInPage> {
                                         Navigator.pushReplacement(context,
                                             MaterialPageRoute(
                                                 builder: ((context) {
-                                          return const ChatScreen();
+                                          return const MainMenuScreen();
                                         })));
                                       }
                                       setState(() {

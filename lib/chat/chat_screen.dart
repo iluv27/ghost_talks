@@ -15,42 +15,42 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   //Nav Bar Congig....
-  int _selectedIndex = 0;
+  // int _selectedIndex = 0;
 
-  static List<Widget> _pages = <Widget>[
-    const ChatScreen(),
-    const CallScreen(),
-    const ProfileScreen()
-  ];
+  // static List<Widget> _pages = <Widget>[
+  //   const ChatScreen(),
+  //   const CallScreen(),
+  //   const ProfileScreen()
+  // ];
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+  // void _onItemTapped(int index) {
+  //   setState(() {
+  //     _selectedIndex = index;
+  //   });
+  // }
 
   //Firebase Config...
-  final _auth = FirebaseAuth.instance;
+  // final _auth = FirebaseAuth.instance;
 
-  var loggedInUser;
+  // var loggedInUser;
 
-  @override
-  void initState() {
-    super.initState();
-    getCurrentUser();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   getCurrentUser();
+  // }
 
-  void getCurrentUser() {
-    try {
-      final user = _auth.currentUser;
-      if (user != null) {
-        loggedInUser = user;
-        print(loggedInUser.email);
-      }
-    } catch (e) {
-      print(e);
-    }
-  }
+  // void getCurrentUser() {
+  //   try {
+  //     final user = _auth.currentUser;
+  //     if (user != null) {
+  //       loggedInUser = user;
+  //       print(loggedInUser.email);
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
 
   List items = [
     Padding(
@@ -332,35 +332,34 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: Container(
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-                topRight: Radius.circular(30), topLeft: Radius.circular(30)),
-          ),
-          child: Material(
-            elevation: 0.0,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30.0)),
-            child: BottomNavigationBar(
-              elevation: 0,
-              backgroundColor: Colors.transparent,
-              items: const <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.favorite),
-                  label: 'Favorites',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
-                  label: 'Profile',
-                ),
-              ],
-            ),
-          )),
+      // bottomNavigationBar: Container(
+      //     decoration: const BoxDecoration(
+      //       color: Colors.white,
+      //       borderRadius: BorderRadius.only(
+      //           topRight: Radius.circular(30), topLeft: Radius.circular(30)),
+      //     ),
+      //     child: Material(
+      //       elevation: 0.0,
+      //       shape: RoundedRectangleBorder(
+      //           borderRadius: BorderRadius.circular(30.0)),
+      //       child: BottomNavigationBar(
+      //         elevation: 0,
+      //         backgroundColor: Colors.transparent,
+      //         items: const <BottomNavigationBarItem>[
+      //           BottomNavigationBarItem(
+      //             icon: Icon(Icons.home),
+      //             label: 'Home',
+      //           ),
+      //           BottomNavigationBarItem(
+      //             icon: Icon(Icons.favorite),
+      //             label: 'Favorites',
+      //           ),
+      //           BottomNavigationBarItem(
+      //             icon: Icon(Icons.person),
+      //             label: 'Profile',
+      //           ),
+      //         ],
+      //       ),
     );
   }
 }

@@ -7,6 +7,7 @@ import 'package:ghost_talks/constants.dart';
 import 'package:ghost_talks/signup/sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:ghost_talks/chat/main_menu_screen';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -131,7 +132,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                           context,
                                           MaterialPageRoute(
                                             builder: ((context) {
-                                              return const ChatScreen();
+                                              return const MainMenuScreen();
                                             }),
                                           ),
                                         );
