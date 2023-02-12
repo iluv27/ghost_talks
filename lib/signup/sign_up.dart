@@ -7,7 +7,7 @@ import 'package:ghost_talks/constants.dart';
 import 'package:ghost_talks/signup/sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:ghost_talks/chat/main_menu_screen';
+import 'package:ghost_talks/chat/main_menu_screen.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -47,7 +47,9 @@ class _SignUpPageState extends State<SignUpPage> {
                       child: Text(
                         'Get Started',
                         style: TextStyle(
-                            fontSize: 35, fontWeight: FontWeight.w600),
+                            fontSize: 35,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white),
                       ),
                     ),
                     const SizedBox(

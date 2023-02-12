@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_unnecessary_containers, avoid_print, prefer_typing_uninitialized_variables, unused_element, unused_import
+// ignore_for_file: avoid_unnecessary_containers, avoid_print, prefer_typing_uninitialized_variables, unused_element, unused_import, must_be_immutable, unused_field
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,19 +16,6 @@ class MainMenuScreen extends StatefulWidget {
 
 class _MainMenuScreenState extends State<MainMenuScreen> {
   //Nav Bar Congig....
-  int _selectedIndex = 0;
-
-  final List<Widget> _pages = <Widget>[
-    const ChatScreen(),
-    const CallScreen(),
-    const ProfileScreen()
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   //Firebase Config...
   final _auth = FirebaseAuth.instance;
@@ -74,21 +61,56 @@ class _BottomBarItems extends StatelessWidget {
       top: false,
       bottom: true,
       child: Container(
-        color: Colors.blue,
+        margin: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+        decoration: const BoxDecoration(
+          color: Color(0XFF263238),
+          borderRadius: BorderRadius.all(Radius.circular(40)),
+        ),
+        height: 75,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             BottomBarItem(
+              onTapped: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: ((context) {
+                      return const CallScreen();
+                    }),
+                  ),
+                );
+              },
               icon: Icons.call,
-              label: 'calls',
+              text: 'calls',
             ),
             BottomBarItem(
+              onTapped: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: ((context) {
+                      return const ChatScreen();
+                    }),
+                  ),
+                );
+              },
               icon: Icons.message,
-              label: 'chat',
+              text: 'messages',
             ),
             BottomBarItem(
+              onTapped: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: ((context) {
+                      return const ProfileScreen();
+                    }),
+                  ),
+                );
+              },
               icon: Icons.person,
-              label: 'profile',
+              text: 'profile',
             ),
           ],
         ),
@@ -98,15 +120,33 @@ class _BottomBarItems extends StatelessWidget {
 }
 
 class BottomBarItem extends StatelessWidget {
-  BottomBarItem({super.key, this.icon, this.label});
+  BottomBarItem(
+      {super.key, required this.icon, required this.text, this.onTapped});
 
-  String? label;
-  IconData? icon;
+  Function()? onTapped;
+  String text;
+  IconData icon;
   @override
   Widget build(BuildContext context) {
-    return Icon(
-      icon,
-      semanticLabel: label,
+    return GestureDetector(
+      onTap: onTapped,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            icon,
+            color: Colors.white,
+            size: 28,
+          ),
+          const SizedBox(
+            height: 3,
+          ),
+          Text(
+            text,
+            style: const TextStyle(color: Colors.white, fontSize: 13),
+          ),
+        ],
+      ),
     );
   }
 }

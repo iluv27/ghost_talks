@@ -14,44 +14,6 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  //Nav Bar Congig....
-  // int _selectedIndex = 0;
-
-  // static List<Widget> _pages = <Widget>[
-  //   const ChatScreen(),
-  //   const CallScreen(),
-  //   const ProfileScreen()
-  // ];
-
-  // void _onItemTapped(int index) {
-  //   setState(() {
-  //     _selectedIndex = index;
-  //   });
-  // }
-
-  //Firebase Config...
-  // final _auth = FirebaseAuth.instance;
-
-  // var loggedInUser;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   getCurrentUser();
-  // }
-
-  // void getCurrentUser() {
-  //   try {
-  //     final user = _auth.currentUser;
-  //     if (user != null) {
-  //       loggedInUser = user;
-  //       print(loggedInUser.email);
-  //     }
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
-
   List items = [
     Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -144,7 +106,7 @@ class _ChatScreenState extends State<ChatScreen> {
             children: [
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+                    const EdgeInsets.symmetric(vertical: 30, horizontal: 25),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -154,7 +116,9 @@ class _ChatScreenState extends State<ChatScreen> {
                         Text(
                           'Welcome Bola',
                           style: TextStyle(
-                              fontSize: 21, fontWeight: FontWeight.w700),
+                              fontSize: 21,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white),
                         ),
                         SizedBox(
                           height: 5,
@@ -162,11 +126,14 @@ class _ChatScreenState extends State<ChatScreen> {
                         Text(
                           'It\'s good to see you again!',
                           style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.w400),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white),
                         ),
                       ],
                     ),
                     Material(
+                      color: Colors.transparent,
                       child: Ink(
                         decoration: const ShapeDecoration(
                           shape: CircleBorder(),
@@ -332,34 +299,6 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
         ),
       ),
-      // bottomNavigationBar: Container(
-      //     decoration: const BoxDecoration(
-      //       color: Colors.white,
-      //       borderRadius: BorderRadius.only(
-      //           topRight: Radius.circular(30), topLeft: Radius.circular(30)),
-      //     ),
-      //     child: Material(
-      //       elevation: 0.0,
-      //       shape: RoundedRectangleBorder(
-      //           borderRadius: BorderRadius.circular(30.0)),
-      //       child: BottomNavigationBar(
-      //         elevation: 0,
-      //         backgroundColor: Colors.transparent,
-      //         items: const <BottomNavigationBarItem>[
-      //           BottomNavigationBarItem(
-      //             icon: Icon(Icons.home),
-      //             label: 'Home',
-      //           ),
-      //           BottomNavigationBarItem(
-      //             icon: Icon(Icons.favorite),
-      //             label: 'Favorites',
-      //           ),
-      //           BottomNavigationBarItem(
-      //             icon: Icon(Icons.person),
-      //             label: 'Profile',
-      //           ),
-      //         ],
-      //       ),
     );
   }
 }

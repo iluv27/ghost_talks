@@ -6,7 +6,7 @@ import 'package:ghost_talks/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ghost_talks/chat/chat_screen.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:ghost_talks/chat/main_menu_screen';
+import 'package:ghost_talks/chat/main_menu_screen.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -43,7 +43,9 @@ class _SignInPageState extends State<SignInPage> {
                       child: Text(
                         'Welcome Back',
                         style: TextStyle(
-                            fontSize: 35, fontWeight: FontWeight.w600),
+                            fontSize: 35,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white),
                       ),
                     ),
                     const SizedBox(

@@ -7,9 +7,18 @@ class CallScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Container(
-      child: const Text('Hi Calls'),
-    ));
+    return Scaffold(
+      floatingActionButton: IconButton(
+          onPressed: (() {
+            Navigator.pop(context);
+          }),
+          icon: const Icon(
+            Icons.call,
+          )),
+      body: Center(
+          child: Container(
+        child: const Text('Hi Calls'),
+      )),
+    );
   }
 }
