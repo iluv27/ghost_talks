@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, prefer_typing_uninitialized_variables
+// ignore_for_file: avoid_print, prefer_typing_uninitialized_variables, unused_import, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
