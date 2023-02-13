@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_unnecessary_containers, avoid_print, prefer_typing_uninitialized_variables, unused_element, unused_import, must_be_immutable, unused_field
 
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ghost_talks/constants.dart';
@@ -16,6 +18,22 @@ class MainMenuScreen extends StatefulWidget {
 
 class _MainMenuScreenState extends State<MainMenuScreen> {
   //Nav Bar Congig....
+
+  final ValueNotifier<int> pageIndex = ValueNotifier(0);
+
+  int selectedIndex = 0;
+
+  static List<Widget> pages = [
+    const ChatScreen(),
+    const CallScreen(),
+    const ProfileScreen(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
+  }
 
   //Firebase Config...
   final _auth = FirebaseAuth.instance;
@@ -44,75 +62,82 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: ChatScreen(),
-      bottomNavigationBar: _BottomBarItems(),
+      body: ValueListenableBuilder(
+          valueListenable: pageIndex,
+          builder: ((context, value, child) {
+            return pages[value];
+          })),
+      bottomNavigationBar: _BottomBarItems(
+        onItemSelected: (selectedIndex) {
+          pageIndex.value = selectedIndex;
+        },
+      ),
     );
   }
 }
 
-class _BottomBarItems extends StatelessWidget {
-  const _BottomBarItems();
+class _BottomBarItems extends StatefulWidget {
+  const _BottomBarItems({this.onItemSelected});
+
+  final ValueChanged<int>? onItemSelected;
+
+  @override
+  State<_BottomBarItems> createState() => _BottomBarItemsState();
+}
+
+class _BottomBarItemsState extends State<_BottomBarItems> {
+  int selIndex = 0;
+
+  void handleItemSelected(int index) {
+    setState(() {
+      selIndex = index;
+    });
+
+    widget.onItemSelected!(index);
+  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       top: false,
       bottom: true,
-      child: Container(
-        margin: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-        decoration: const BoxDecoration(
-          color: Color(0XFF263238),
-          borderRadius: BorderRadius.all(Radius.circular(40)),
-        ),
-        height: 75,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            BottomBarItem(
-              onTapped: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: ((context) {
-                      return const CallScreen();
-                    }),
-                  ),
-                );
-              },
-              icon: Icons.call,
-              text: 'calls',
-            ),
-            BottomBarItem(
-              onTapped: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: ((context) {
-                      return const ChatScreen();
-                    }),
-                  ),
-                );
-              },
-              icon: Icons.message,
-              text: 'messages',
-            ),
-            BottomBarItem(
-              onTapped: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: ((context) {
-                      return const ProfileScreen();
-                    }),
-                  ),
-                );
-              },
-              icon: Icons.person,
-              text: 'profile',
-            ),
-          ],
+      child: Material(
+        elevation: 2,
+        child: Container(
+          margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+          decoration: const BoxDecoration(
+            color: Color(0XFF263238),
+            borderRadius: BorderRadius.all(Radius.circular(40)),
+          ),
+          height: 75,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              BottomBarItem(
+                selectedIndex: 0,
+                icon: Icons.call,
+                text: 'calls',
+                onTap: handleItemSelected,
+                isSelected: selIndex == 0,
+              ),
+              BottomBarItem(
+                selectedIndex: 1,
+                icon: Icons.message,
+                text: 'messages',
+                onTap: handleItemSelected,
+                isSelected: selIndex == 1,
+              ),
+              BottomBarItem(
+                selectedIndex: 2,
+                icon: Icons.person,
+                text: 'profile',
+                onTap: handleItemSelected,
+                isSelected: selIndex == 2,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -121,68 +146,44 @@ class _BottomBarItems extends StatelessWidget {
 
 class BottomBarItem extends StatelessWidget {
   BottomBarItem(
-      {super.key, required this.icon, required this.text, this.onTapped});
+      {super.key,
+      required this.icon,
+      required this.text,
+      required this.selectedIndex,
+      this.onTap,
+      this.isSelected = false});
 
-  Function()? onTapped;
+  ValueChanged<int>? onTap;
+  int selectedIndex;
   String text;
   IconData icon;
+  bool isSelected;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTapped,
+      behavior: HitTestBehavior.opaque,
+      onTap: (() {
+        onTap!(selectedIndex);
+      }),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(
             icon,
-            color: Colors.white,
-            size: 28,
+            color: isSelected ? const Color(0XFF46ECE2) : Colors.white,
+            size: isSelected ? 30 : 28,
           ),
           const SizedBox(
             height: 3,
           ),
           Text(
             text,
-            style: const TextStyle(color: Colors.white, fontSize: 13),
+            style: TextStyle(
+                color: isSelected ? const Color(0XFF46ECE2) : Colors.white,
+                fontSize: 13),
           ),
         ],
       ),
     );
   }
 }
-
-// Container(
-//           decoration: const BoxDecoration(
-//             color: Colors.black,
-//             borderRadius: BorderRadius.only(
-//                 topRight: Radius.circular(30), topLeft: Radius.circular(60)),
-//           ),
-//           child: Material(
-//             elevation: 0.0,
-//             shape: RoundedRectangleBorder(
-//                 borderRadius: BorderRadius.circular(60.0)),
-//             child: BottomNavigationBar(
-//               elevation: 0,
-//               backgroundColor: Colors.transparent,
-//               items: const <BottomNavigationBarItem>[
-//                 BottomNavigationBarItem(
-//                   icon: Icon(Icons.home),
-//                   label: 'Home',
-//                 ),
-//                 BottomNavigationBarItem(
-//                   icon: Icon(Icons.favorite),
-//                   label: 'Favorites',
-//                 ),
-//                 BottomNavigationBarItem(
-//                   icon: Icon(Icons.person),
-//                   label: 'Profile',
-//                 ),
-//               ],
-//             currentIndex: _selectedIndex,
-//           selectedItemColor: Colors.amber[800],
-//           onTap: _onItemTapped,
-//         //   shape: RoundedRectangleBorder(
-//         //   borderRadius: BorderRadius.circular(20),
-//         // ),
-//             ),
-//           ),),
