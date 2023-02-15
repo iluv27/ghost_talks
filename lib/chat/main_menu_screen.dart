@@ -117,15 +117,15 @@ class _BottomBarItemsState extends State<_BottomBarItems> {
             children: [
               BottomBarItem(
                 selectedIndex: 0,
-                icon: Icons.call,
-                text: 'calls',
+                icon: Icons.message,
+                text: 'Chats',
                 onTap: handleItemSelected,
                 isSelected: selIndex == 0,
               ),
               BottomBarItem(
                 selectedIndex: 1,
-                icon: Icons.message,
-                text: 'messages',
+                icon: Icons.call,
+                text: 'Calls',
                 onTap: handleItemSelected,
                 isSelected: selIndex == 1,
               ),

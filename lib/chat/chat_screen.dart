@@ -170,104 +170,98 @@ class _ChatScreenState extends State<ChatScreen> {
                           child: Padding(
                             padding: const EdgeInsets.only(
                                 top: 30.0, left: 30, right: 20),
-                            child: SingleChildScrollView(
-                              controller:
-                                  ScrollController(initialScrollOffset: 30),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    'Chats',
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.black87),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  'Chats',
+                                  style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.black87),
+                                ),
+                                Container(
+                                  height: 100,
+                                  child: ListView.builder(
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: items.length,
+                                    itemBuilder: ((context, index) {
+                                      return Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 15.0),
+                                        child: Row(
+                                          children: [items[index]],
+                                        ),
+                                      );
+                                    }),
                                   ),
-                                  Container(
-                                    height: 100,
-                                    child: ListView.builder(
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount: items.length,
-                                      itemBuilder: ((context, index) {
-                                        return Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 15.0),
-                                          child: Row(
-                                            children: [items[index]],
-                                          ),
-                                        );
-                                      }),
+                                ),
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text(
+                                      'Recent Chat',
+                                      style: TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.black87),
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 30,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      const Text(
-                                        'Recent Chat',
-                                        style: TextStyle(
-                                            fontSize: 24,
-                                            fontWeight: FontWeight.w700,
-                                            color: Colors.black87),
-                                      ),
-                                      ElevatedButton(
-                                          style: ButtonStyle(
-                                            padding: MaterialStateProperty.all(
-                                                const EdgeInsets.symmetric(
-                                                    vertical: 10,
-                                                    horizontal: 20)),
-                                            elevation:
-                                                const MaterialStatePropertyAll(
-                                                    0),
-                                            backgroundColor:
-                                                MaterialStateProperty.all(
-                                                    const Color.fromARGB(
-                                                        255, 184, 237, 234)),
-                                            shape: MaterialStateProperty.all<
-                                                RoundedRectangleBorder>(
-                                              RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(20.0),
-                                              ),
+                                    ElevatedButton(
+                                        style: ButtonStyle(
+                                          padding: MaterialStateProperty.all(
+                                              const EdgeInsets.symmetric(
+                                                  vertical: 10,
+                                                  horizontal: 20)),
+                                          elevation:
+                                              const MaterialStatePropertyAll(0),
+                                          backgroundColor:
+                                              MaterialStateProperty.all(
+                                                  const Color.fromARGB(
+                                                      255, 184, 237, 234)),
+                                          shape: MaterialStateProperty.all<
+                                              RoundedRectangleBorder>(
+                                            RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0),
                                             ),
                                           ),
-                                          onPressed: (() {}),
-                                          child: Row(
-                                            children: const [
-                                              Icon(
-                                                Icons.archive,
-                                                size: 16,
-                                              ),
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              Text(
-                                                'Archived Chat',
-                                                style: TextStyle(
-                                                    color: Colors.black38,
-                                                    fontSize: 10,
-                                                    fontWeight:
-                                                        FontWeight.w700),
-                                              ),
-                                            ],
-                                          ))
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    height: 8,
-                                  ),
-                                  const TextBox(),
-                                  const TextBox(),
-                                  const TextBox(),
-                                  const TextBox(),
-                                  const TextBox(),
-                                  const TextBox(),
-                                ],
-                              ),
+                                        ),
+                                        onPressed: (() {}),
+                                        child: Row(
+                                          children: const [
+                                            Icon(
+                                              Icons.archive,
+                                              size: 16,
+                                            ),
+                                            SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                              'Archived Chat',
+                                              style: TextStyle(
+                                                  color: Colors.black38,
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w700),
+                                            ),
+                                          ],
+                                        ))
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                const TextBox(),
+                                const TextBox(),
+                                const TextBox(),
+                                const TextBox(),
+                                const TextBox(),
+                                const TextBox(),
+                              ],
                             ),
                           ),
                         ),
