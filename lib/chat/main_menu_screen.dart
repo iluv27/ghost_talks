@@ -26,7 +26,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
   static List<Widget> pages = [
     const ChatScreen(),
     const CallScreen(),
-    const ProfileScreen(),
+    ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -131,8 +131,8 @@ class _BottomBarItemsState extends State<_BottomBarItems> {
               ),
               BottomBarItem(
                 selectedIndex: 2,
-                icon: Icons.person,
-                text: 'profile',
+                icon: Icons.sports_esports,
+                text: 'Games',
                 onTap: handleItemSelected,
                 isSelected: selIndex == 2,
               ),

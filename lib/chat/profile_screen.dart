@@ -1,51 +1,79 @@
 import 'package:flutter/material.dart';
-import 'package:ghost_talks/constants.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+class ProfileScreen extends StatefulWidget {
+  @override
+  _ProfileScreenState createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<Offset> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 2000),
+      vsync: this,
+    )..forward();
+    _animation = Tween<Offset>(
+      begin: Offset.zero,
+      end: const Offset(-1.0, 0.0),
+    ).animate(_controller);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    // ignore: avoid_unnecessary_containers
     return Scaffold(
-      body: Container(
-        //Background image
-        decoration: decorationProperty(3),
-        child: SafeArea(
-          child: Center(
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(top: 120.0),
-                    child: Center(
-                      child: Text(
-                        'Profile',
-                        style: TextStyle(
-                            fontSize: 35,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white),
-                      ),
-                    ),
+      body: Stack(
+        children: [
+          Positioned(
+            top: 0,
+            left: 0,
+            bottom: 0,
+            right: 200,
+            child: Container(
+              color: Colors.blue,
+              child: const Center(
+                child: Text(
+                  'This part stays',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24.0,
                   ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-
-                  // The body of the input form
-                  Expanded(
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(40.0),
-                        ),
-                      ),
-                    ),
-                  ),
-                ]),
+                ),
+              ),
+            ),
           ),
-        ),
+          SlideTransition(
+            position: _animation,
+            child: Positioned(
+              top: 0,
+              right: 0,
+              bottom: 0,
+              width: 200,
+              child: Container(
+                color: Colors.red,
+                child: const Center(
+                  child: Text(
+                    'This part moves',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24.0,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
