@@ -103,86 +103,18 @@ class TextBlob extends StatelessWidget {
                             child: const Expanded(
                               child: Text(
                                 'Where are you? I have been looking for you for several days',
-                                style: TextStyle(fontSize: 16),
+                                style: TextStyle(
+                                    fontSize: 16, color: Color(0xff222222)),
                               ),
                             ),
                           ),
                         ],
                       ),
-                      Positioned(
+                      const Positioned(
                         left: 0,
                         right: 0,
                         bottom: 20,
-                        child: Container(
-                          height: 80,
-                          child: TextField(
-                            decoration: InputDecoration(
-                              prefixIcon: Material(
-                                color: Colors.transparent,
-                                child: Ink(
-                                  decoration: const ShapeDecoration(
-                                    shape: CircleBorder(),
-                                    color: Color(0XFF455A64),
-                                  ),
-                                  child: IconButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    icon: const Icon(
-                                        Icons.door_back_door_outlined),
-                                    iconSize: 15,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ), // Leading icon
-                              suffixIcon: Material(
-                                color: Colors.transparent,
-                                child: Ink(
-                                  decoration: const ShapeDecoration(
-                                    shape: CircleBorder(),
-                                    color: Color(0XFF455A64),
-                                  ),
-                                  child: IconButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    icon: const Icon(
-                                        Icons.door_back_door_outlined),
-                                    iconSize: 20,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ), // Trailing icon
-                              hintText: 'Search', // Placeholder text
-                              border: const OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.elliptical(60, 60)),
-                                borderSide: BorderSide(
-                                  color: Color(0xff263238),
-                                  width: 2,
-                                ),
-                              ),
-                              enabledBorder: const OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.elliptical(60, 60)),
-                                borderSide: BorderSide(
-                                  color: Color(0xff263238),
-                                  width: 2,
-                                ),
-                              ),
-                              focusedBorder: const OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.elliptical(60, 60)),
-                                borderSide: BorderSide(
-                                  color: Color(0xff263238),
-                                  width: 2,
-                                ),
-                              ),
-                              filled: true,
-                              fillColor: Color.fromARGB(51, 69, 90, 100),
-                            ), // Border
-                          ),
-                        ),
+                        child: InputTextButton(),
                       ),
                     ]),
                   ),
@@ -191,6 +123,91 @@ class TextBlob extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class InputTextButton extends StatelessWidget {
+  const InputTextButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 70,
+      child: TextField(
+        decoration: InputDecoration(
+          prefixIcon: Material(
+            color: Colors.transparent,
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
+              child: Ink(
+                padding: const EdgeInsets.all(3.5),
+                decoration: const ShapeDecoration(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.elliptical(60, 60)),
+                  ),
+                  color: Color(0XFF455A64),
+                ),
+                child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.mic),
+                  iconSize: 25,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ), // Leading icon
+          suffixIcon: Material(
+            color: Colors.transparent,
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10),
+              child: Ink(
+                padding: const EdgeInsets.all(3.5),
+                decoration: const ShapeDecoration(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.elliptical(60, 60)),
+                  ),
+                  color: Color.fromARGB(57, 69, 90, 100),
+                ),
+                child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.send),
+                  iconSize: 20,
+                  color: const Color(0XFF455A64),
+                ),
+              ),
+            ),
+          ), // Trailing icon
+          hintText: 'Message...', // Placeholder text
+          border: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.elliptical(60, 60)),
+            borderSide: BorderSide(
+              color: Color(0xff263238),
+              width: 2,
+            ),
+          ),
+          enabledBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.elliptical(60, 60)),
+            borderSide: BorderSide(
+              color: Color(0xff263238),
+              width: 2,
+            ),
+          ),
+          focusedBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.elliptical(60, 60)),
+            borderSide: BorderSide(
+              color: Color(0xff263238),
+              width: 2,
+            ),
+          ),
+          filled: true,
+          fillColor: Color.fromARGB(51, 69, 90, 100),
+        ), // Border
       ),
     );
   }
