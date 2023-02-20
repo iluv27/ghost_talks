@@ -112,20 +112,78 @@ class TextBlob extends StatelessWidget {
                       Positioned(
                         left: 0,
                         right: 0,
-                        bottom: 0,
+                        bottom: 20,
                         child: Container(
-                          height: 50,
-                          color: Colors.grey[200],
-                          child: const TextField(
+                          height: 80,
+                          child: TextField(
                             decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.search), // Leading icon
-                              suffixIcon: Icon(Icons.clear), // Trailing icon
+                              prefixIcon: Material(
+                                color: Colors.transparent,
+                                child: Ink(
+                                  decoration: const ShapeDecoration(
+                                    shape: CircleBorder(),
+                                    color: Color(0XFF455A64),
+                                  ),
+                                  child: IconButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    icon: const Icon(
+                                        Icons.door_back_door_outlined),
+                                    iconSize: 15,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ), // Leading icon
+                              suffixIcon: Material(
+                                color: Colors.transparent,
+                                child: Ink(
+                                  decoration: const ShapeDecoration(
+                                    shape: CircleBorder(),
+                                    color: Color(0XFF455A64),
+                                  ),
+                                  child: IconButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    icon: const Icon(
+                                        Icons.door_back_door_outlined),
+                                    iconSize: 20,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ), // Trailing icon
                               hintText: 'Search', // Placeholder text
-                              border: OutlineInputBorder(), // Border
-                            ),
+                              border: const OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.elliptical(60, 60)),
+                                borderSide: BorderSide(
+                                  color: Color(0xff263238),
+                                  width: 2,
+                                ),
+                              ),
+                              enabledBorder: const OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.elliptical(60, 60)),
+                                borderSide: BorderSide(
+                                  color: Color(0xff263238),
+                                  width: 2,
+                                ),
+                              ),
+                              focusedBorder: const OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.elliptical(60, 60)),
+                                borderSide: BorderSide(
+                                  color: Color(0xff263238),
+                                  width: 2,
+                                ),
+                              ),
+                              filled: true,
+                              fillColor: Color.fromARGB(51, 69, 90, 100),
+                            ), // Border
                           ),
                         ),
-                      )
+                      ),
                     ]),
                   ),
                 ),
