@@ -1,7 +1,4 @@
 // ignore_for_file: avoid_print, prefer_typing_uninitialized_variables, unused_import, sized_box_for_whitespace
-
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ghost_talks/constants.dart';

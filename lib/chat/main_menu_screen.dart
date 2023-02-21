@@ -26,7 +26,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
   static List<Widget> pages = [
     const ChatScreen(),
     const CallScreen(),
-    ProfileScreen(),
+    const ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
