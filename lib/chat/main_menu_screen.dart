@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_unnecessary_containers, avoid_print, prefer_typing_uninitialized_variables, unused_element, unused_import, must_be_immutable, unused_field
 
 import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ghost_talks/constants.dart';

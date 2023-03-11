@@ -1,14 +1,38 @@
-// ignore_for_file: sized_box_for_whitespace, must_be_immutable
+// ignore_for_file: sized_box_for_whitespace, must_be_immutable, prefer_typing_uninitialized_variables, avoid_print
 import 'package:flutter/material.dart';
 import 'package:ghost_talks/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class TextBlob extends StatelessWidget {
   TextBlob({super.key});
 
   // ignore: unused_field
   final _firestore = FirebaseFirestore.instance;
+  final _auth = FirebaseAuth.instance;
+
   TextEditingController message = TextEditingController();
+  var loggedInUser;
+
+  dynamic getCurrentUser() {
+    try {
+      final user = _auth.currentUser;
+      if (user != null) {
+        loggedInUser = user;
+        return loggedInUser.email;
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void messagesStream() async {
+    await for (var snapshot in _firestore.collection('messages').snapshots()) {
+      for (var text in snapshot.docs) {
+        print(text.data());
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -165,7 +189,11 @@ class TextBlob extends StatelessWidget {
                                     ),
                                     child: IconButton(
                                       onPressed: () {
-                                        print(message.text);
+                                        messagesStream();
+                                        _firestore.collection('messages').add({
+                                          'text': message.text,
+                                          'sender': getCurrentUser()
+                                        });
                                       },
                                       icon: const Icon(Icons.send),
                                       iconSize: 20,
