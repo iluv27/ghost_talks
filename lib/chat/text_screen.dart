@@ -40,68 +40,76 @@ class TextBlob extends StatelessWidget {
       body: Container(
         decoration: decorationProperty(4),
         child: SafeArea(
-          child: Column(
+          child: Stack(
             children: [
-              SizedBox(
-                height: 100,
-                child: Padding(
-                    padding: const EdgeInsets.only(top: 10.0, right: 20),
-                    child: ListTile(
-                      horizontalTitleGap: 0,
-                      contentPadding: const EdgeInsets.all(0),
-                      leading: CircleAvatar(
-                        maxRadius: 45,
-                        backgroundColor: Colors.blueGrey,
-                        child: Text(
-                          'PO',
-                          style: kTextStyle(),
-                        ),
-                      ),
-                      title: const Padding(
-                        padding: EdgeInsets.only(top: 8.0),
-                        child: Text(
-                          'Mr Peter',
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                      subtitle: Row(
-                        children: const [
-                          CircleAvatar(
-                            backgroundColor: Colors.green,
-                            radius: 5,
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            'Online',
-                            style: TextStyle(color: Colors.white54),
-                          ),
-                        ],
-                      ),
-                      trailing: Material(
-                        color: Colors.transparent,
-                        child: Ink(
-                          decoration: const ShapeDecoration(
-                            shape: CircleBorder(),
-                            color: Color(0XFF455A64),
-                          ),
-                          child: IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: const Icon(Icons.door_back_door_outlined),
-                            iconSize: 20,
-                            color: Colors.white,
+              Positioned(
+                top: 0,
+                left: 0,
+                width: MediaQuery.of(context).size.width,
+                child: SizedBox(
+                  height: 100,
+                  child: Padding(
+                      padding: const EdgeInsets.only(top: 5.0, right: 20),
+                      child: ListTile(
+                        horizontalTitleGap: 0,
+                        contentPadding: const EdgeInsets.all(0),
+                        leading: CircleAvatar(
+                          maxRadius: 45,
+                          backgroundColor: Colors.blueGrey,
+                          child: Text(
+                            'PO',
+                            style: kTextStyle(),
                           ),
                         ),
-                      ),
-                    )),
+                        title: const Padding(
+                          padding: EdgeInsets.only(top: 8.0),
+                          child: Text(
+                            'Mr Peter',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                        subtitle: Row(
+                          children: const [
+                            CircleAvatar(
+                              backgroundColor: Colors.green,
+                              radius: 5,
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              'Online',
+                              style: TextStyle(color: Colors.white54),
+                            ),
+                          ],
+                        ),
+                        trailing: Material(
+                          color: Colors.transparent,
+                          child: Ink(
+                            decoration: const ShapeDecoration(
+                              shape: CircleBorder(),
+                              color: Color(0XFF455A64),
+                            ),
+                            child: IconButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: const Icon(Icons.door_back_door_outlined),
+                              iconSize: 20,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      )),
+                ),
               ),
-              Expanded(
+              Positioned(
+                top: 85,
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * 0.88,
                 child: Container(
-                  width: double.infinity,
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -111,33 +119,70 @@ class TextBlob extends StatelessWidget {
                   ),
                   child: Padding(
                     padding:
-                        const EdgeInsets.only(top: 30.0, left: 30, right: 20),
-                    child: Stack(fit: StackFit.loose, children: [
+                        const EdgeInsets.only(top: 20.0, left: 30, right: 20),
+                    child: Stack(children: [
                       Column(
                         children: [
-                          Container(
-                            height: null,
-                            width: 250,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 15),
-                            decoration: const BoxDecoration(
-                              color: Color.fromARGB(255, 201, 247, 244),
-                              borderRadius: BorderRadius.only(
-                                bottomRight: Radius.circular(20.0),
-                                topRight: Radius.circular(20.0),
-                                topLeft: Radius.circular(20.0),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Container(
+                                height: null,
+                                width: 250,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 15),
+                                decoration: const BoxDecoration(
+                                  color: Color.fromARGB(255, 215, 249, 247),
+                                  borderRadius: BorderRadius.only(
+                                    bottomRight: Radius.circular(20.0),
+                                    topRight: Radius.circular(20.0),
+                                    topLeft: Radius.circular(20.0),
+                                  ),
+                                ),
+                                child: const Expanded(
+                                  child: Text(
+                                    'Where are you? I have been looking for you for several days.',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        color: Color.fromARGB(255, 48, 48, 48)),
+                                  ),
+                                ),
                               ),
                             ),
-                            child: const Expanded(
-                              child: Text(
-                                'Where are you? I have been looking for you for several days',
-                                style: TextStyle(
-                                    fontSize: 16, color: Color(0xff222222)),
+                          ),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 10.0),
+                              child: Container(
+                                height: null,
+                                width: 250,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 15),
+                                decoration: const BoxDecoration(
+                                  color: Color.fromARGB(255, 236, 241, 239),
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(20.0),
+                                    topRight: Radius.circular(20.0),
+                                    topLeft: Radius.circular(20.0),
+                                  ),
+                                ),
+                                child: const Expanded(
+                                  child: Text(
+                                    'I was in a pitch of sorts!',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        color: Color.fromARGB(255, 48, 48, 48)),
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ],
                       ),
+
+                      //Message: Text Box to Type The Message
                       Positioned(
                         left: 0,
                         right: 0,
@@ -228,8 +273,8 @@ class TextBlob extends StatelessWidget {
                                 ),
                               ),
                               filled: true,
-                              fillColor: const Color.fromARGB(51, 69, 90, 100),
-                            ), // Border
+                              fillColor: const Color.fromARGB(23, 69, 90, 100),
+                            ),
                           ),
                         ),
                       ),
@@ -244,14 +289,3 @@ class TextBlob extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
-// Align(
-//                         alignment: Alignment.topLeft,
-//                         widthFactor: 100,
-//                         child:
-//                           )

@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:ghost_talks/constants.dart';
 import 'text_screen.dart';
 
-class TextBox extends StatelessWidget {
+class TextBox extends StatefulWidget {
   const TextBox({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<TextBox> createState() => _TextBoxState();
+}
+
+class _TextBoxState extends State<TextBox> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,7 +25,7 @@ class TextBox extends StatelessWidget {
         child: Container(
           height: 90,
           decoration: BoxDecoration(
-            border: Border.all(color: const Color(0XFFDFE8E7), width: 0.8),
+            border: Border.all(color: const Color(0XFFDFE8E7), width: 0.6),
             borderRadius: BorderRadius.circular(10.0),
           ),
           child: Padding(
