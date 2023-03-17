@@ -247,7 +247,9 @@ class TextBlob extends StatelessWidget {
                                   ),
                                 ),
                               ), // Trailing icon
-                              hintText: 'Message...', // Placeholder text
+                              hintText: 'Message...',
+                              hintStyle: const TextStyle(
+                                  color: Colors.black26), // Placeholder text
                               border: const OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.elliptical(60, 60)),
